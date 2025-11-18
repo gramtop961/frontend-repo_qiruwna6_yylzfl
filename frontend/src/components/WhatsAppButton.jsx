@@ -1,9 +1,10 @@
 import React from "react";
 
 const WhatsAppButton = () => {
-  const number = "919999999999"; // placeholder India number
+  // Using business-provided WhatsApp number (India): 9916964801
+  const number = "919916964801"; // 91 + number, no symbols/spaces
   const message = encodeURIComponent(
-    "Hi, I'm calling from your website. I have a question about my order."
+    "Hi THE HooK, I’m reaching out from your website. I have a question / want to place an order."
   );
   const href = `https://wa.me/${number}?text=${message}`;
 

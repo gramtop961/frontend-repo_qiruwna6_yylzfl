@@ -11,7 +11,20 @@ const Menu = ({ onAddToCart }) => {
       try {
         const res = await fetch(`${base}/menu`);
         const data = await res.json();
-        setItems(data);
+        if (Array.isArray(data) && data.length === 0) {
+          // Seed curated Kerala non-veg + salads on first run
+          try {
+            await fetch(`${base}/admin/seed_menu`, { method: "POST" });
+            const res2 = await fetch(`${base}/menu`);
+            const data2 = await res2.json();
+            setItems(data2);
+          } catch (e) {
+            console.error("Seeding failed", e);
+            setItems([]);
+          }
+        } else {
+          setItems(data);
+        }
       } catch (e) {
         console.error(e);
       } finally {
